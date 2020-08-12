@@ -44,6 +44,12 @@
 
 	<xacro:property name="PLUGIN_HAND" value="hand_$(arg PREFIX)"/>
  	<xacro:property name="LINK_NAME" value="$(arg PREFIX)_$(arg TOOL)::$(arg PREFIX)h_forearm"/>
+
+ 	<!-- 
+ 	hand of god plugin expects a static_tranform "hand_${PLUGIN_HAND}_desired". This TF should be broadcasted before launching gazebo.
+ 	Example: For the right hand
+ 	$ rosrun tf static_transform_publisher 0 0 0.5 0 0 0 1 world hand_r_desired 100 
+ 	-->
 	<gazebo>
 		<plugin name="hand_of_god" filename="libgazebo_ros_hand_of_god.so">
 		<robotNamespace></robotNamespace>
