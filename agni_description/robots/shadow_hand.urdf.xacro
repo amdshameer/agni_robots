@@ -38,4 +38,15 @@
 
     <xacro:shadow_gazebo_controller_manager namespace="${prefix}" />
   </xacro:macro>
+  <!--       <gazebo>  
+  <plugin name="hand_of_god" filename="libgazebo_ros_hand_of_god.so">
+    <robotNamespace></robotNamespace>
+    <linkName>r_shadow_motor_right::rh_forearm</linkName>
+    <frameId>hand</frameId>
+    <kl>200</kl>
+    <ka>200</ka>  
+  </plugin>
+    </gazebo>
+ -->
+
 </robot>

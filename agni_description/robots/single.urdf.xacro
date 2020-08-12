@@ -41,4 +41,17 @@
 	<xacro:property name="PREFIX" value="$(arg PREFIX)"/>
 	<xacro:arm_with_tool parent="${parent}" arm_type="$(arg ARM)" tool_type="$(arg TOOL)"
 	                     prefix="${PREFIX if PREFIX not in ['', '-'] else ''}"/>
+
+	<xacro:property name="PLUGIN_HAND" value="hand_$(arg PREFIX)"/>
+ 	<xacro:property name="LINK_NAME" value="$(arg PREFIX)_$(arg TOOL)::$(arg PREFIX)h_forearm"/>
+	<gazebo>
+		<plugin name="hand_of_god" filename="libgazebo_ros_hand_of_god.so">
+		<robotNamespace></robotNamespace>
+		<linkName>${LINK_NAME}</linkName>
+		<frameId>${PLUGIN_HAND}</frameId>
+		<kl>200</kl>
+		<ka>200</ka>
+		</plugin>
+	</gazebo>
+
 </robot>
