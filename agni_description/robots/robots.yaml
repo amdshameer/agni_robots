@@ -289,3 +289,6 @@ tools:
     props:
       mass:  2.5
       cog: "0.05 0.05 0.14"
+
+gazebo_plugins:
+  hand_of_god: 1
