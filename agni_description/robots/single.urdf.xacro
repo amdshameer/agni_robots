@@ -6,7 +6,6 @@
 	<xacro:arg name="ARM" default="-"/>
 	<xacro:arg name="TOOL" default="-"/>
 	<xacro:arg name="PARENT" default="world"/>
-	<xacro:arg name="USE_HAND_OF_GOD" default="0"/>
 
 	<xacro:arg name="PREFIX" default="-"/>
 	<xacro:arg name="SIM" default="1"/>
@@ -43,19 +42,17 @@
 	<xacro:arm_with_tool parent="${parent}" arm_type="$(arg ARM)" tool_type="$(arg TOOL)"
 	                     prefix="${PREFIX if PREFIX not in ['', '-'] else ''}"/>
 
-	<xacro:property name="PLUGIN_HAND" value="hand_$(arg PREFIX)"/>
- 	<xacro:property name="LINK_NAME" value="$(arg PREFIX)_$(arg TOOL)::$(arg PREFIX)h_forearm"/>
 
  	<!-- 
  	hand of god plugin expects a static_tranform "hand_${PLUGIN_HAND}_desired". This TF should be broadcasted before launching gazebo.
  	Example: For the right hand
  	$ rosrun tf static_transform_publisher 0 0 0.5 0 0 0 1 world hand_r_desired 100 
  	-->
- 	<xacro:property name="load_plugin" value="${settings['gazebo_plugins']['hand_of_god']}" />
- 	<xacro:if value="${load_plugin == 1}">
- 	<!-- <xacro:property name="USE_PLUGIN" value="$(arg USE_HAND_OF_GOD)"/>
- 	<xacro:if value="${USE_PLUGIN == '1'}"> -->
- 	
+
+	<xacro:property name="PLUGIN_HAND" value="hand_$(arg PREFIX)"/>
+ 	<xacro:property name="LINK_NAME" value="$(arg PREFIX)_$(arg TOOL)::$(arg PREFIX)h_forearm"/>
+ 	<xacro:property name="ENABLE_HAND_OF_GOD" value="${settings['gazebo_plugins']['hand_of_god']}" />
+ 	<xacro:if value="${ENABLE_HAND_OF_GOD == 1}">
 	<gazebo>
 		<plugin name="hand_of_god" filename="libgazebo_ros_hand_of_god.so">
 		<robotNamespace></robotNamespace>
